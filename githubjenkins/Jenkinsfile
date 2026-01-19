@@ -8,14 +8,14 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                dir('SignalRChat') {
+                dir('githubjenkins') {
                     sh "docker build -t my-dotnet-app:latest ."
                 }
             }
         }
         stage('Ansible Deploy') {
             steps {
-                dir('SignalRChat') {
+                dir('githubjenkins') {
                     sh "ansible-playbook deploy.yml"
                 }
             }
