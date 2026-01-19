@@ -3,11 +3,11 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build-env
 WORKDIR /app
 
 # Copy csproj and restore dependencies
-COPY githubjenkins/*.csproj ./
+COPY githubjenkins/githubjenkins/*.csproj ./
 RUN dotnet restore
 
 # Copy everything else and build
-COPY githubjenkins/. ./
+COPY githubjenkins/githubjenkins/. ./
 RUN dotnet publish -c Release -o out
 
 # Stage 2: Run the application
