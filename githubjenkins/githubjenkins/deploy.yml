@@ -1,0 +1,24 @@
+---
+- name: Deploy .NET App
+  hosts: my_servers
+  connection: local
+  become: false
+
+  tasks:
+    - name: Ensure Docker image is present
+      community.docker.docker_image:
+        name: my-dotnet-app
+        tag: latest
+        source: local
+
+    - name: Ensure the container is running
+      community.docker.docker_container:
+        name: dotnet-web-container
+        image: my-dotnet-app:latest
+        state: started
+        recreate: yes
+        ports:
+          - "8085:8080"
+        env:
+          DOTNET_URLS: "http://0.0.0.0:8080"
+...
