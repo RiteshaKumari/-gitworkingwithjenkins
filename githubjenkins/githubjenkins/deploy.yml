@@ -1,6 +1,6 @@
 ---
 - name: Deploy .NET App
-  hosts: all
+  hosts: my_servers
   connection: local
   become: false
 
